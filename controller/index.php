@@ -1,6 +1,6 @@
 <?php
-	class index{
-		public function home(){
-			echo "this is home page ! ";
+	class indexController{
+		public function index(){
+			echo "this is index page ! ";
 		}
 	}

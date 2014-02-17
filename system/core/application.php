@@ -3,6 +3,7 @@
 		private static $instance;
 		private $class;
 		private $method;
+		private $file;
 		public static function  &get_instance(){
 			if(! self::$instance){
 				self::$instance=new application();
@@ -10,13 +11,21 @@
 			return self::$instance;
 		}
 		private  function dispatch(){
-			$URI=$_SERVER["REQUEST_URI"]=="/"?"/index/home":$_SERVER["REQUEST_URI"];
-			$uri=explode("/",$URI);
-			$this->class=$uri[1];
-			$this->method=$uri[2];
-			if(is_file(APP_PATH."controller/".$uri[1].".php")){
-				require_once APP_PATH."controller/".$uri[1].".php";
-				if(is_callable(array($uri[1],$uri[2]))){
+			if($_SERVER["REQUEST_URI"]=="/"){
+				$this->method="index";
+				$this->file="index";
+				$this->class="indexController";
+			}else{
+			
+				$uri=explode("/",$_SERVER["REQUEST_URI"]);
+				$this->method=array_pop($uri);
+				$this->file=array_pop($uri);
+				$this->class=$this->file."Controller";
+			}
+			
+			if(file_exists(APP_PATH."controller/".$this->file.".php")){
+				require_once APP_PATH."controller/".$this->file.".php";
+				if(is_callable(array($this->class,$this->method))){
 					
 					$this->execute();
 				}
