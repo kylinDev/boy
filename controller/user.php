@@ -1,7 +1,11 @@
 <?php
-	class userController{
-	
+	class userController extends Controller{
 		public function say(){
-			echo "this is user say function !";
+			$this->set_params("user",array("name"=>"ken","age"=>26));
+			//$this->render();
+			$this->render("user");
+		}
+		public function hello(){
+			echo "hello";
 		}
 	}

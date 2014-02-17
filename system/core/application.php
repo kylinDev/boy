@@ -4,6 +4,7 @@
 		private $class;
 		private $method;
 		private $file;
+		private $directory;
 		public static function  &get_instance(){
 			if(! self::$instance){
 				self::$instance=new application();
@@ -32,8 +33,14 @@
 			}
 		}
 		private  function execute(){
-				
-			call_user_func_array(array($this->class,$this->method),array());
+			$this->class=new $this->class();
+			$view=call_user_func_array(array($this->class,$this->method),array());
+			if($view && is_string($view)){
+				$this->render();		
+			}
+						
+		}
+		private function render(){
 			
 		}
 		public  function run(){
