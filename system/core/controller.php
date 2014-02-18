@@ -4,8 +4,8 @@
 	protected function  set_params($key,$value){
 		$this->params[$key]=$value;
 	}
-	protected function redirect(){
-
+	protected function redirect($url){
+		header("location:".$url);
 	}
 	protected function render($page=null){
 		$page=($page==null)?"index.html":$page.".html";
