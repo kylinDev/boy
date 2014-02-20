@@ -11,6 +11,6 @@
 			$this->get=$_GET;
 		}
 		public function get_params(){
-			
+			echo "get_params";
 		}
 	}

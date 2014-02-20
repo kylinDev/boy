@@ -35,11 +35,8 @@
 			}
 		}
 		private  function execute(){
-			$this->class=new $this->class();
-			import("library.request",SYSTEM_PATH);
-			import("library.response",SYSTEM_PATH);
-			$this->request=new request();
-			$this->response=new response();
+			$register=register::get_instance()->init();
+			$this->class=new $this->class($register);
 			$view=call_user_func_array(array($this->class,$this->method),array());
 			if($view && is_string($view)){
 				$this->render();		
