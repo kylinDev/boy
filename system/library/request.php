@@ -11,6 +11,16 @@
 			$this->get=$_GET;
 		}
 		public function get_params(){
-			echo "get_params";
+			if(is_array($this->request) && !empty($this->request)){
+				$data=array();
+				foreach($this->request as $key=>$value){
+					$data[$key]=$value;
+				}
+				return $data;
+			}else{
+				return null;
+			}
 		}
+		
+
 	}
