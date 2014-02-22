@@ -5,7 +5,7 @@
 		}
 		public function redirect($url){
 			
-			header("location:".$url);
+			header("location: http://".$url);
 			exit();
 		}
 	}

@@ -20,6 +20,7 @@
 				$this->class="indexController";
 			}else{
 				$path_info=strpos($_SERVER["REQUEST_URI"],"?")==false?$_SERVER["REQUEST_URI"]:array_shift(explode("?",$_SERVER["REQUEST_URI"]));
+				
 				$uri=explode("/",$path_info);
 				$this->method=array_pop($uri);
 				$this->file=array_pop($uri);
@@ -37,10 +38,7 @@
 		private  function execute(){
 			$register=register::get_instance()->init();
 			$this->class=new $this->class($register);
-			$view=call_user_func_array(array($this->class,$this->method),array());
-			if($view && is_string($view)){
-				$this->render();		
-			}
+			call_user_func_array(array($this->class,$this->method),array());
 						
 		}
 		private function render(){

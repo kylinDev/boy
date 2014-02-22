@@ -8,5 +8,6 @@
 		}
 		public function hello(){
 			echo "hello";
+			$this->registers['response']->redirect('www.baidu.com');
 		}
 	}

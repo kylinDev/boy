@@ -1,5 +1,5 @@
 <?php
-	final class register{
+	 class register{
 		private static $instance;
 		protected $registers=array();
 		public static function &get_instance(){
@@ -17,10 +17,12 @@
 					$this->registers[$key]=new $class();
 				}
 			}
-			if(!empty($extension_library)){
-				foreach($extension_library as $key=>$extension){
-					require_once APP_PATH."extension/".$key.".php";
+			if(file_exists(APP_PATH."extension/extension.php")){
+				require_once APP_PATH."extension/extension.php";
+				if(!empty($extension_library)){
+					foreach($extension_library as $key=>$extension){
 					$this->registers[$key]=new $extension();
+					}
 				}
 			}
 			return $this->registers;
