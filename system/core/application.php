@@ -38,12 +38,26 @@
 		private  function execute(){
 			$register=register::get_instance()->init();
 			$this->class=new $this->class($register);
+			$rc=new ReflectionClass($this->class);
+			if($rc->hasMethod('before')){
+				$method=$rc->getMethod('before');
+				if($method->isPublic()){
+					call_user_func_array(array($this->class,'before'),array());
+				}
+			}	
 			call_user_func_array(array($this->class,$this->method),array());
+			if($rc->hasMethod('after')){
+				$method=$rc->getMethod('after');
+				if($method->isPublic()){
+					call_user_func_array(array($this->class,'after'),array());
+				}
+			}
 						
 		}
 		private function render(){
 			
 		}
+		
 		public  function run(){
 			$this->dispatch();		
 		}

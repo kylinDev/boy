@@ -10,4 +10,10 @@
 			echo "hello";
 			$this->registers['response']->redirect('www.baidu.com');
 		}
+		public function before(){
+			echo "before";
+		}
+		public function after(){
+			echo "after";
+		}
 	}
