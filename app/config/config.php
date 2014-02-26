@@ -3,4 +3,4 @@
 	* key   : file name
 	* value : class name
 	*/
-	$extention_library['memcahce']='memcache';	
+	$extensions['memcache']='memcache';	

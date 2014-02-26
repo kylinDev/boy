@@ -10,18 +10,18 @@
 		}
 		private  function load_register_class(){
 			require_once SYSTEM_PATH."config/config.php";
-			require_once APP_PATH."config/config.php";
 			if(!empty($classes)){
 				foreach($classes as $key=>$class){
 					require_once SYSTEM_PATH."library/".$key.".php";
-					$this->registers[$key]=new $class();
+					$this->registers[$class]=new $class();
 				}
 			}
-			if(file_exists(APP_PATH."extension/extension.php")){
-				require_once APP_PATH."extension/extension.php";
-				if(!empty($extension_library)){
-					foreach($extension_library as $key=>$extension){
-					$this->registers[$key]=new $extension();
+			if(file_exists(APP_PATH."config/config.php")){
+				require_once APP_PATH."config/config.php";
+				if(!empty($extensions)){
+					foreach($extensions as $key=>$extension){
+					require_once APP_PATH."extension/".$key.".php";
+					$this->registers[$extension]=new $extension();
 					}
 				}
 			}
