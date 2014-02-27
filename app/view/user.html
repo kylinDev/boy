@@ -1,15 +1,42 @@
 <html>
-<head></head>
-<body>
+<head>
 <?php
-if($user){
-	foreach($user as $u){
-		echo $u;
-	}	
-?>
-
-<?php
+if($css){
+	foreach($css as $val){
+		echo $val;
+	}
+}
+if($js){
+	foreach($js as $val){
+		echo $val;	
+	}
 }
 ?>
+</head>
+<body>
+<table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th> Name</th>
+            <th>Adrress</th>
+          </tr>
+        </thead>
+        <tbody>
+	<?php
+		foreach($users as  $key=>$user){
+ 	?>
+	    <tr>
+            <td><? echo $key ?></td>
+            <td><? echo $user['name'] ?></td>
+            <td><? echo $user['address'] ?></td>
+          </tr>
+	<?php
+	}
+	?>
+        </tbody>
+      </table>
+
+
 </body>
 </html>
